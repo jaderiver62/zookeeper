@@ -41,6 +41,14 @@ function findById(id, animalsArray) {
   return result;
 }
 
+function createNewAnimal(body, animalsArray) {
+  console.log(body);
+  // our function's main code will go here!
+
+  // return finished code to post route for response
+  return body;
+}
+
 app.get('/api/animals', (req, res) => {
   let results = animals;
   if (req.query) {
@@ -50,10 +58,11 @@ app.get('/api/animals', (req, res) => {
 });
 
 app.post('/api/animals', (req, res) => {
-    // req.body is where our incoming content will be
-    console.log(req.body);
-    res.json(req.body);
-  });
+  // set id based on what the next index of the array will be
+  req.body.id = animals.length.toString();
+
+  res.json(req.body);
+});
 
 app.get('/api/animals/:id', (req, res) => {
   const result = findById(req.params.id, animals);
